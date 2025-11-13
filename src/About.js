@@ -23,15 +23,17 @@ const About = () => {
       </div>
 
       {/* Thông tin liên hệ */}
-      <h4 className="mb-3">📞 Thông tin liên hệ</h4>
+      <h4 className="mb-3">Thông tin liên hệ</h4>
       <ul className="list-group mb-4">
         <li className="list-group-item">
           <strong>Email:</strong>{" "}
-          <a href="mailto:info@truonghoc.com">info@truonghoc.com</a>
+          <a href="mailto:nguyenconghao210605@kthcm.edu.vn">
+            nguyenconghao210605@kthcm.edu.vn
+          </a>
         </li>
         <li className="list-group-item">
           <strong>Số điện thoại:</strong>{" "}
-          <a href="tel:+84901234567">+84 901 234 567</a>
+          <a href="tel:+84901234567">+84 79 234 567</a>
         </li>
         <li className="list-group-item">
           <strong>Facebook:</strong>{" "}
@@ -45,7 +47,7 @@ const About = () => {
       <h4 className="mb-3">🌐 Kết nối với chúng tôi</h4>
       <div className="d-flex gap-3">
         <a
-          href="https://facebook.com/truonghoc"
+          href="https://facebook.com/store"
           target="_blank"
           rel="noreferrer"
           className="btn btn-primary"
