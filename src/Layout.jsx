@@ -35,7 +35,7 @@ const Layout = () => {
           <a href="/trang1">Phụ Kiện</a>
           {user?.role === "admin" && <a href="/admin/products">Quản trị</a>}
           <a href="/trang2">Trang Sinh Viên</a>
-          <a href="/GioiThieu">Giới Thiệu</a>
+          <a href="/About">Giới Thiệu</a>
         </nav>
 
         <div className="header-right">
@@ -63,7 +63,7 @@ const Layout = () => {
 
       {/* --- FOOTER --- */}
       <footer className="modern-footer">
-        <p>© 2025 - Trường học thông minh | Thiết kế bởi Nguyễn Công Hảo</p>
+        <p>© 2025 - StoreH | Thiết kế bởi Nguyễn Công Hảo</p>
       </footer>
     </div>
   );

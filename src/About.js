@@ -1,6 +1,6 @@
 import React from "react";
 
-const GioiThieu = () => {
+const About = () => {
   return (
     <div className="container py-5">
       {/* Tiêu đề */}
@@ -10,14 +10,14 @@ const GioiThieu = () => {
       <div className="card mb-4 shadow-sm">
         <div className="card-body">
           <p>
-            Chào mừng bạn đến với <strong>Trường học thông minh</strong> – nơi
-            cung cấp thông tin, tài nguyên học tập và phụ kiện học tập tiện lợi
-            cho sinh viên và giáo viên.
+            Chào mừng bạn đến với <strong>Cửa hàng Store H</strong> – nơi cung
+            cấp sản phẩm, phụ kiện và tài nguyên học tập tiện lợi cho mọi đối
+            tượng.
           </p>
           <p>
-            Chúng tôi cam kết mang đến trải nghiệm học tập trực tuyến hiệu quả
-            và thân thiện. Bạn có thể duyệt các sản phẩm, tìm hiểu các khóa học,
-            hoặc tham khảo các bài viết hữu ích.
+            Chúng tôi cam kết mang đến trải nghiệm mua sắm trực tuyến dễ dàng,
+            nhanh chóng và thân thiện. Bạn có thể duyệt các sản phẩm, tìm hiểu
+            các chương trình ưu đãi, hoặc tham khảo các bài viết hữu ích.
           </p>
         </div>
       </div>
@@ -35,11 +35,7 @@ const GioiThieu = () => {
         </li>
         <li className="list-group-item">
           <strong>Facebook:</strong>{" "}
-          <a
-            href="https://facebook.com/truonghoc"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="/" target="_blank" rel="noreferrer">
             facebook.com/truonghoc
           </a>
         </li>
@@ -77,4 +73,4 @@ const GioiThieu = () => {
   );
 };
 
-export default GioiThieu;
+export default About;

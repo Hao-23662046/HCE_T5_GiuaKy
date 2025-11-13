@@ -16,7 +16,7 @@ import ProductDetail from "./ProductDetail";
 // @ts-ignore
 import ListProducts_SP from "./ListProducts_SP";
 // @ts-ignore
-import GioiThieu from "./GioiThieu";
+import About from "./About";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -42,7 +42,7 @@ const App = () => {
           <Route path="trang2" element={<Trang2 />} />
           <Route path="sanpham/:id" element={<Chitietsanpham />} />
           <Route path="detail/:id" element={<ProductDetail />} />
-          <Route path="GioiThieu" element={<GioiThieu />} />
+          <Route path="About" element={<About />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="logout" element={<LogoutPage />} />
           <Route
