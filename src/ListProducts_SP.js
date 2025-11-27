@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "./supabaseClient";
+import { useCart } from "./CartContext"; // ⚠️ import context giỏ hàng
 
 const ListProducts_SP = () => {
   const [listProduct, setListProduct] = useState([]);
   const navigate = useNavigate();
+  const { addToCart } = useCart(); // ⚠️ Hàm thêm vào giỏ hàng
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -36,13 +38,11 @@ const ListProducts_SP = () => {
         {listProduct.map((p) => (
           <div
             key={p.id}
-            onClick={() => navigate(`/detail/${p.id}`)}
             style={{
               border: "1px solid #ddd",
               borderRadius: "10px",
               padding: "12px",
               textAlign: "center",
-              cursor: "pointer",
               background: "#fff",
               boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
               transition: "transform 0.2s ease, box-shadow 0.2s ease",
@@ -57,6 +57,7 @@ const ListProducts_SP = () => {
             }}
           >
             <div
+              onClick={() => navigate(`/detail/${p.id}`)}
               style={{
                 width: "100%",
                 height: "200px",
@@ -66,6 +67,7 @@ const ListProducts_SP = () => {
                 overflow: "hidden",
                 borderRadius: "8px",
                 backgroundColor: "#f9f9f9",
+                cursor: "pointer",
               }}
             >
               <img
@@ -88,6 +90,24 @@ const ListProducts_SP = () => {
             <small style={{ color: "#555" }}>
               ⭐ {p.rating_rate} | ({p.rating_count} đánh giá)
             </small>
+
+            {/* --- NÚT THÊM VÀO GIỎ HÀNG --- */}
+            <button
+              onClick={() => addToCart(p)}
+              style={{
+                marginTop: "10px",
+                width: "100%",
+                padding: "10px",
+                background: "#28a745",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+                fontWeight: "bold",
+              }}
+            >
+              🛒 Thêm vào giỏ hàng
+            </button>
           </div>
         ))}
       </div>

@@ -1,11 +1,21 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import logo from "./assets/images/Ten-truong-do-1000x159.png";
 import "./assets/css/layout.css";
+import { useCart } from "./CartContext";
 
 const Layout = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+  // Lấy giỏ hàng từ context
+  const { cartItems } = useCart();
+
+  // Tổng số lượng sản phẩm
+  const totalQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -25,17 +35,47 @@ const Layout = () => {
       {/* --- HEADER --- */}
       <header className="modern-header glass">
         <div className="header-left">
-          <a href="/">
+          <Link to="/">
             <img src={logo} alt="Logo" className="header-logo" />
-          </a>
+          </Link>
         </div>
 
         <nav className="header-nav">
-          <a href="/">Trang chủ</a>
-          <a href="/trang1">Phụ Kiện</a>
-          {user?.role === "admin" && <a href="/admin/products">Quản trị</a>}
-          <a href="/trang2">Trang Sinh Viên</a>
-          <a href="/About">Giới Thiệu</a>
+          <Link to="/">Trang chủ</Link>
+          <Link to="/trang1">Phụ Kiện</Link>
+          {user?.role === "admin" && <Link to="/admin/products">Quản trị</Link>}
+          <Link to="/trang2">Trang Sinh Viên</Link>
+          <Link to="/About">Giới Thiệu</Link>
+          
+
+          {/* --- GIỎ HÀNG --- */}
+          <Link
+            to="/cart"
+            className="menu-item"
+            style={{
+              fontWeight: "bold",
+              color: "#000",
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            🛒 Giỏ hàng
+            {totalQuantity > 0 && (
+              <span
+                style={{
+                  backgroundColor: "red",
+                  color: "white",
+                  borderRadius: "50%",
+                  padding: "2px 6px",
+                  fontSize: "12px",
+                  marginLeft: "5px",
+                }}
+              >
+                {totalQuantity}
+              </span>
+            )}
+          </Link>
         </nav>
 
         <div className="header-right">
@@ -47,9 +87,9 @@ const Layout = () => {
               </button>
             </div>
           ) : (
-            <a href="/login" className="login-btn">
+            <Link to="/login" className="login-btn">
               Đăng nhập
-            </a>
+            </Link>
           )}
         </div>
       </header>

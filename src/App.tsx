@@ -1,4 +1,5 @@
 import "./styles.css";
+import React from "react";
 // @ts-ignore
 import Home from "./Home";
 // @ts-ignore
@@ -17,7 +18,10 @@ import ProductDetail from "./ProductDetail";
 import ListProducts_SP from "./ListProducts_SP";
 // @ts-ignore
 import About from "./About";
-
+// @ts-ignore
+import { CartProvider } from "./CartContext";
+//@ts-ignore
+import CartPage from "./CartPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //@ts-ignore
@@ -28,34 +32,36 @@ import LogoutPage from "./LogoutPage";
 import ProtectedRoute from "./ProtectedRoute";
 //@ts-ignore
 import ListProducts_SP_Admin from "./ListProducts_SP_Admin";
-
 const App = () => {
   //return <Layout />;
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* ✅ Layout chung cho toàn bộ hệ thống */}
-        <Route path="/" element={<Layout />}>
-          {/* Trang chính (cho người dùng vãng lai) */}
-          <Route index element={<ListProducts_SP />} />
-          <Route path="trang1" element={<Trang1 />} />
-          <Route path="trang2" element={<Trang2 />} />
-          <Route path="sanpham/:id" element={<Chitietsanpham />} />
-          <Route path="detail/:id" element={<ProductDetail />} />
-          <Route path="About" element={<About />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="logout" element={<LogoutPage />} />
-          <Route
-            path="admin/products"
-            element={
-              <ProtectedRoute>
-                <ListProducts_SP_Admin />
-              </ProtectedRoute>
-            }
-          />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* ✅ Layout chung cho toàn bộ hệ thống */}
+          <Route path="/" element={<Layout />}>
+            {/* Trang chính (cho người dùng vãng lai) */}
+            <Route index element={<ListProducts_SP />} />
+            <Route path="trang1" element={<Trang1 />} />
+            <Route path="trang2" element={<Trang2 />} />
+            <Route path="sanpham/:id" element={<Chitietsanpham />} />
+            <Route path="detail/:id" element={<ProductDetail />} />
+            <Route path="cart" element={<CartPage />} />
+            <Route path="About" element={<About />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="logout" element={<LogoutPage />} />
+            <Route
+              path="admin/products"
+              element={
+                <ProtectedRoute>
+                  <ListProducts_SP_Admin />
+                </ProtectedRoute>
+              }
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
   );
 };
 
