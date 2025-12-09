@@ -1,86 +1,99 @@
-const Trang2 = () => {
-  const dssv = [
-    {
-      id: 1,
-      hoten: "Nguyễn Văn An111",
-      lop: "K19",
-      email: "abc@1234.edu.vn",
-      anh: "https://htmediagroup.vn/wp-content/uploads/2022/11/Anh-58-copy-min.jpg.webp",
-    },
-    {
-      id: 2,
-      hoten: "Trần Văn Bình",
-      lop: "K19",
-      email: "abc@1234.edu.vn",
-      anh: "https://htmediagroup.vn/wp-content/uploads/2022/08/Anh-cong-so-1-min.jpg.webp",
-    },
-    {
-      id: 3,
-      hoten: "Hà Thị Hiền",
-      lop: "K19",
-      email: "abc@cuong.edu.vn",
-      anh: "https://smilemedia.vn/wp-content/uploads/2022/08/Concept-chup-anh-ca-nhan-chan-dung.jpg",
-    },
-    {
-      id: 4,
-      hoten: "Nguyễn Kiều Hải My",
-      lop: "K19",
-      email: "abc@cuong.edu.vn",
-      anh: "https://studiochupanhdep.com//Upload/Images/Album/anh-beauty-01.jpg",
-    },
-  ];
-
+const LienHe = () => {
   return (
-    <div
-      style={{
-        minHeight: "100vh", // Chiếm toàn bộ chiều cao màn hình
-        display: "flex",
-        justifyContent: "center", // Căn giữa ngang
+    <div style={{ padding: "40px", maxWidth: "900px", margin: "0 auto" }}>
+      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Liên hệ</h2>
 
-        backgroundColor: "#f9f9f9", // Tuỳ chọn
-        padding: "20px",
-      }}
-    >
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-          gap: "16px",
-          maxWidth: "1000px", // Giới hạn chiều rộng
-          width: "100%",
+          background: "#fff",
+          padding: "20px",
+          borderRadius: "8px",
+          boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         }}
       >
-        {dssv.map((motsinhvien) => (
-          <div
-            key={motsinhvien.id}
-            style={{
-              height: "300px",
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-              padding: "10px",
-              textAlign: "center",
-              backgroundColor: "#fff",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-            }}
-          >
-            <img
-              src={motsinhvien.anh}
-              alt={motsinhvien.hoten}
-              style={{
-                height: "140px",
+        <h3>Thông tin cửa hàng</h3>
+        <p>
+          <strong>Địa chỉ:</strong> 123 Nguyễn Văn Linh, Đà Nẵng
+        </p>
+        <p>
+          <strong>Hotline:</strong> 0905 123 456
+        </p>
+        <p>
+          <strong>Email:</strong> shop@gmail.com
+        </p>
 
-                objectFit: "cover",
-                borderRadius: "6px",
-              }}
-            />
-            <h3 style={{ margin: "10px 0 5px" }}>{motsinhvien.hoten}</h3>
-            <p>{motsinhvien.lop}</p>
-            <p>{motsinhvien.email}</p>
+        <hr style={{ margin: "20px 0" }} />
+
+        <h3>Gửi liên hệ</h3>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            alert("Gửi thông tin liên hệ thành công!");
+          }}
+        >
+          <div style={{ marginBottom: 10 }}>
+            <label>Họ tên:</label>
+            <input type="text" required style={styles.input} />
           </div>
-        ))}
+
+          <div style={{ marginBottom: 10 }}>
+            <label>Email:</label>
+            <input type="email" required style={styles.input} />
+          </div>
+
+          <div style={{ marginBottom: 10 }}>
+            <label>Nội dung:</label>
+            <textarea required rows={4} style={styles.textarea}></textarea>
+          </div>
+
+          <button type="submit" style={styles.button}>
+            Gửi ngay
+          </button>
+        </form>
+      </div>
+
+      <div style={{ marginTop: "30px" }}>
+        <iframe
+          title="map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.916296517434!2d108.22086547491677!3d16.07176398888137!2m3!1f0!2f0!3f0!3m2!
+          1i1024!2i768!4f13.1!3m3!1m2!1s0x314219c3e4adba6f%3A0xdade517693c54dae!
+          2zMTIzIE5ndXnhu4VuIFbEg24gTGluaCwgVGjDoG5oIEtow6osIMSQw6AgTuG6tW5n!5e0!
+          3m2!1svi!2s!4v1703749842141!5m2!1svi!2s"
+          width="100%"
+          height="300"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+        ></iframe>
       </div>
     </div>
   );
 };
 
-export default Trang2;
+const styles = {
+  input: {
+    width: "100%",
+    padding: "10px",
+    marginTop: 5,
+    borderRadius: "6px",
+    border: "1px solid #ccc",
+  },
+  textarea: {
+    width: "100%",
+    padding: "10px",
+    marginTop: 5,
+    borderRadius: "6px",
+    border: "1px solid #ccc",
+  },
+  button: {
+    padding: "12px 24px",
+    background: "#007bff",
+    color: "#fff",
+    border: "none",
+    borderRadius: "6px",
+    cursor: "pointer",
+    marginTop: 10,
+  },
+};
+
+export default LienHe;
