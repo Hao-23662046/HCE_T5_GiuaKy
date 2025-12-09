@@ -14,10 +14,8 @@ export default function CartPage() {
 
   const navigate = useNavigate();
 
-  // Trạng thái hiển thị form thanh toán
   const [showCheckoutForm, setShowCheckoutForm] = useState(false);
 
-  // Thông tin khách hàng
   const [customerInfo, setCustomerInfo] = useState({
     name: "",
     phone: "",
@@ -35,7 +33,6 @@ export default function CartPage() {
     });
   };
 
-  // Khi đơn hàng trống
   if (cartItems.length === 0)
     return (
       <div style={{ textAlign: "center", marginTop: 50 }}>
@@ -46,7 +43,6 @@ export default function CartPage() {
       </div>
     );
 
-  // Xác nhận đặt hàng
   const handleConfirmOrder = () => {
     if (!customerInfo.name || !customerInfo.phone || !customerInfo.address) {
       alert("Vui lòng nhập đầy đủ Họ tên, Số điện thoại và Địa chỉ!");
@@ -73,7 +69,6 @@ export default function CartPage() {
     <div style={{ padding: 20 }}>
       <h2>Giỏ hàng ({cartItems.length})</h2>
 
-      {/* Bảng giỏ hàng */}
       <table
         style={{ width: "100%", borderCollapse: "collapse", marginTop: 20 }}
         border={1}
@@ -101,7 +96,9 @@ export default function CartPage() {
                 <span style={{ marginLeft: 10 }}>{item.product.title}</span>
               </td>
 
-              <td style={{ textAlign: "center" }}>${item.product.price}</td>
+              <td style={{ textAlign: "center" }}>
+                {item.product.price.toLocaleString()} VND
+              </td>
 
               <td style={{ textAlign: "center" }}>
                 <button
@@ -122,7 +119,7 @@ export default function CartPage() {
               </td>
 
               <td style={{ textAlign: "center", fontWeight: "bold" }}>
-                ${(item.product.price * item.quantity).toFixed(2)}
+                {(item.product.price * item.quantity).toLocaleString()} VND
               </td>
 
               <td style={{ textAlign: "center" }}>
@@ -138,7 +135,6 @@ export default function CartPage() {
         </tbody>
       </table>
 
-      {/* Nút thanh toán hoặc form thanh toán */}
       {!showCheckoutForm ? (
         <div
           style={{
@@ -154,10 +150,11 @@ export default function CartPage() {
           <div style={{ textAlign: "right" }}>
             <h3>
               Tổng cộng:{" "}
-              <span style={{ color: "#d32f2f" }}>${totalPrice.toFixed(2)}</span>
+              <span style={{ color: "#d32f2f" }}>
+                {totalPrice.toLocaleString()} VND
+              </span>
             </h3>
 
-            {/* NHẤN VÀO MỚI HIỆN FORM */}
             <button
               onClick={() => setShowCheckoutForm(true)}
               style={styles.primaryButton}
@@ -168,7 +165,6 @@ export default function CartPage() {
         </div>
       ) : (
         <>
-          {/* FORM THANH TOÁN HIỆN RA  */}
           <h3 style={{ marginTop: 30 }}>Thông tin khách hàng</h3>
 
           <div style={{ maxWidth: 400 }}>
@@ -213,7 +209,6 @@ export default function CartPage() {
             />
           </div>
 
-          {/* Nút xác nhận */}
           <button
             onClick={handleConfirmOrder}
             style={{ ...styles.primaryButton, marginTop: 20 }}

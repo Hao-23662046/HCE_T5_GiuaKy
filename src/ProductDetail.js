@@ -69,7 +69,6 @@ const ProductDetail = () => {
           alignItems: "flex-start",
         }}
       >
-        {/* Hình ảnh sản phẩm */}
         <div
           style={{
             flex: "1 1 300px",
@@ -93,13 +92,13 @@ const ProductDetail = () => {
           />
         </div>
 
-        {/* Thông tin chi tiết */}
         <div style={{ flex: "1 1 300px" }}>
           <h2 style={{ marginBottom: "10px" }}>{product.title}</h2>
+
           <p
             style={{ fontSize: "1.2rem", color: "#e63946", fontWeight: "bold" }}
           >
-            ${product.price}
+            {product.price.toLocaleString("vi-VN")} VNĐ
           </p>
 
           <p style={{ marginTop: "10px", color: "#555" }}>

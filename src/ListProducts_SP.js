@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "./supabaseClient";
-import { useCart } from "./CartContext"; // ⚠️ import context giỏ hàng
+import { useCart } from "./CartContext";
 
 const ListProducts_SP = () => {
   const [listProduct, setListProduct] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { addToCart } = useCart(); // ⚠️ Hàm thêm vào giỏ hàng
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -19,10 +20,14 @@ const ListProducts_SP = () => {
         setListProduct(data);
       } catch (err) {
         console.error("Lỗi khi lấy dữ liệu:", err.message);
+      } finally {
+        setLoading(false);
       }
     };
     fetchProducts();
   }, []);
+
+  if (loading) return <h3>Đang tải dữ liệu...</h3>;
 
   return (
     <div style={{ padding: "20px" }}>
@@ -71,7 +76,7 @@ const ListProducts_SP = () => {
               }}
             >
               <img
-                src={p.image}
+                src={p.image || "https://via.placeholder.com/200"}
                 alt={p.title}
                 style={{
                   width: "100%",
@@ -84,14 +89,16 @@ const ListProducts_SP = () => {
             <h4 style={{ margin: "10px 0 5px", fontSize: "1rem" }}>
               {p.title}
             </h4>
+
+            {/* --- FORMAT GIÁ VNĐ --- */}
             <p style={{ color: "#e63946", fontWeight: "bold", margin: "0" }}>
-              ${p.price}
+              {p.price.toLocaleString("vi-VN")} VNĐ
             </p>
+
             <small style={{ color: "#555" }}>
               ⭐ {p.rating_rate} | ({p.rating_count} đánh giá)
             </small>
 
-            {/* --- NÚT THÊM VÀO GIỎ HÀNG --- */}
             <button
               onClick={() => addToCart(p)}
               style={{

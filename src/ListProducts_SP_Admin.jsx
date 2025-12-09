@@ -84,7 +84,6 @@ const ListProducts_SP_Admin = () => {
         🛠️ Quản lý sản phẩm (Admin)
       </h2>
 
-      {/* Form thêm/sửa sản phẩm */}
       <div className="card mb-5 shadow-sm">
         <div className="card-body">
           <h5 className="card-title">
@@ -105,6 +104,7 @@ const ListProducts_SP_Admin = () => {
                   required
                 />
               </div>
+
               <div className="col-md-6">
                 <input
                   type="number"
@@ -118,6 +118,7 @@ const ListProducts_SP_Admin = () => {
                   required
                 />
               </div>
+
               <div className="col-12">
                 <input
                   type="text"
@@ -130,6 +131,7 @@ const ListProducts_SP_Admin = () => {
                   onChange={handleChange}
                 />
               </div>
+
               <div className="col-md-6">
                 <input
                   type="number"
@@ -145,6 +147,7 @@ const ListProducts_SP_Admin = () => {
                   onChange={handleChange}
                 />
               </div>
+
               <div className="col-md-6">
                 <input
                   type="number"
@@ -179,7 +182,7 @@ const ListProducts_SP_Admin = () => {
         </div>
       </div>
 
-      {/* Danh sách sản phẩm dạng Grid */}
+      {/* LIST GRID */}
       <div className="row g-4">
         {products.map((p) => (
           <div key={p.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -197,10 +200,16 @@ const ListProducts_SP_Admin = () => {
               />
               <div className="card-body d-flex flex-column">
                 <h6 className="card-title text-truncate">{p.title}</h6>
-                <p className="text-danger fw-bold mb-1">${p.price}</p>
+
+                {/* GIÁ VNĐ */}
+                <p className="text-danger fw-bold mb-1">
+                  {p.price.toLocaleString("vi-VN")} VNĐ
+                </p>
+
                 <p className="text-muted mb-3">
                   ⭐ {p.rating_rate} ({p.rating_count})
                 </p>
+
                 <div className="mt-auto d-flex justify-content-end gap-2">
                   <button
                     onClick={() => setEditingProduct(p)}
