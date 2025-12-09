@@ -1,4 +1,3 @@
-// src/CartContext.tsx
 import React, {
   createContext,
   useContext,
@@ -6,7 +5,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-// ✅ IMPORT QUAN TRỌNG: Lấy kiểu dữ liệu từ file product.ts
+
 import { Product, CartItem } from "./data/product";
 
 interface CartContextType {
@@ -24,8 +23,8 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {
     try {
-      const storedData = localStorage.getItem("MY_APP_CART");
-      return storedData ? JSON.parse(storedData) : [];
+      const stored = localStorage.getItem("MY_APP_CART");
+      return stored ? JSON.parse(stored) : [];
     } catch {
       return [];
     }
@@ -35,20 +34,16 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("MY_APP_CART", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // --- Logic xử lý (Giữ nguyên, chỉ đảm bảo Type khớp) ---
   const addToCart = (product: Product) => {
     setCartItems((prev) => {
-      // Tìm xem sản phẩm đã có chưa
-      const existing = prev.find((item) => item.product.id === product.id);
-      if (existing) {
-        // Nếu có rồi -> Tăng quantity
+      const exist = prev.find((item) => item.product.id === product.id);
+      if (exist) {
         return prev.map((item) =>
           item.product.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
-      // Nếu chưa -> Thêm mới (quantity = 1)
       return [...prev, { product, quantity: 1 }];
     });
   };
@@ -67,11 +62,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const decreaseQuantity = (id: number) => {
     setCartItems((prev) =>
       prev
-        .map((item) => {
-          if (item.product.id === id)
-            return { ...item, quantity: item.quantity - 1 };
-          return item;
-        })
+        .map((item) =>
+          item.product.id === id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
         .filter((item) => item.quantity > 0)
     );
   };
@@ -101,7 +96,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) throw new Error("useCart must be used within a CartProvider");
-  return context;
+  const ctx = useContext(CartContext);
+  if (!ctx) throw new Error("useCart must be used in CartProvider");
+  return ctx;
 };
