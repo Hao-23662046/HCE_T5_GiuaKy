@@ -42,11 +42,11 @@ const Layout = () => {
 
         <nav className="header-nav">
           <Link to="/">Trang chủ</Link>
+          <Link to="/sanpham">Sản Phẩm</Link>
           <Link to="/trang1">Phụ Kiện</Link>
           {user?.role === "admin" && <Link to="/admin/products">Quản trị</Link>}
           <Link to="/trang2">Trang Sinh Viên</Link>
           <Link to="/About">Giới Thiệu</Link>
-          
 
           {/* --- GIỎ HÀNG --- */}
           <Link
